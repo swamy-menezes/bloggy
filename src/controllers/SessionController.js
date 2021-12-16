@@ -1,4 +1,5 @@
 // import bcrypt from 'bcrypt'
+import { JsonWebTokenError } from 'jsonwebtoken'
 import User from '../models/User'
 
 class SessionController {
@@ -22,9 +23,11 @@ class SessionController {
             id,
             name,
             email
-        }
+        },
+        token: jwt.sign({ id }, process.env.JWT_SECRET, {
+          expiresIn: process.env.JWT_EXPIRATION,
+        }),
     })
-
   }
 }
 
