@@ -37,7 +37,7 @@ class UserController {
 
     if(oldPassword) {
         if(!(await bcrypt.compare(oldPassword, user.password))) {
-            return response.status(400).json({ error: 'Old password does not match. ' })
+            return response.status(400).json({ error: 'Old password does not match.' })
         }
 
         user.password = password
